@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <item
+    android:id="@+id/positivityFragment"
+    android:enabled="true"
+    android:icon="@drawable/ic_baseline_format_list_bulleted_24"
+    android:title="@string/positivity_fragment"
+    android:visible="true" />
+  <item
+    android:id="@+id/favouriteFragment"
+    android:enabled="true"
+    android:icon="@drawable/ic_baseline_favorite_24"
+    android:title="@string/favourite_fragment"
+    android:visible="true" />
+
+
+</menu>
