@@ -4,4 +4,5 @@
   <string name="hello_blank_fragment">Hello blank fragment</string>
   <string name="positivity_fragment">Positivity</string>
   <string name="favourite_fragment">Favourite</string>
+  <string name="demo_quote">What hurts you today makes you stronger tomorrow</string>
 </resources>

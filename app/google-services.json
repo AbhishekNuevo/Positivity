@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "3772896700",
+    "firebase_url": "https://positivity-69593.firebaseio.com",
+    "project_id": "positivity-69593",
+    "storage_bucket": "positivity-69593.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3772896700:android:bf6a77c651b034a9f287b9",
+        "android_client_info": {
+          "package_name": "com.abhishekjoshi158.postivity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "3772896700-un4krkd5qsld9o4bgkqndl4gpi03dl0a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRLsIe4bTVHBVswq2R0fKTFxQnFuoOqi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "3772896700-un4krkd5qsld9o4bgkqndl4gpi03dl0a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
