@@ -1,7 +1,7 @@
 package com.abhishekjoshi158.postivity.adapter
 
 import android.content.Context
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +29,7 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
   private val ll_save : LinearLayout
   private val ll_share : LinearLayout
   private val tv_like_no: TextView
+  private val im_heart : ImageView
   private var likes = 0
   private var documentId = ""
   init {
@@ -39,7 +40,7 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
     ll_like = v.findViewById(R.id.ll_like)
     ll_save = v.findViewById(R.id.ll_save)
     ll_share = v.findViewById(R.id.ll_share)
-
+    im_heart = v.findViewById(R.id.im_heart)
     ll_like.setOnClickListener(this)
     ll_save.setOnClickListener(this)
     ll_share.setOnClickListener(this)
@@ -51,13 +52,21 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
 //    Log.i(PositivityRCViewHolder::class.java.simpleName,"width ${MainActivity.SCREEN_WIDTH} and height $height")
   }
 
-  fun bind(quote: PositivityData) {
+  fun bind(quote: PositivityData,liked:Boolean) {
     positivityText.text = quote.positivity_text
     val path = "english/${quote.image_url}.png"
     GlideApp.with(context).load(storageReference.child(path)).into(positivityImage)
     likes = quote.total_likes
-    tv_like_no.text = quote.total_likes.toString()
     documentId = quote.id
+    if(liked && likes > 0){
+      val likeText = "You & " + --likes + " Others"
+      tv_like_no.text = likeText
+      im_heart.setImageResource(R.drawable.ic_baseline_favorite_24)
+    }else{
+      tv_like_no.text = likes.toString()
+      im_heart.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+    }
+
 
   }
 
@@ -80,7 +89,7 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
 
 }
 
-class PositivityRCAdapter(private val quotes: List<PositivityData>, private val userClicks : (String,String)->Unit) :
+class PositivityRCAdapter(private val quotes: List<PositivityData>,private val myLike : Map<String,Boolean>,private val userClicks : (String,String)->Unit) :
   RecyclerView.Adapter<PositivityRCViewHolder>() {
 
   override fun getItemCount(): Int {
@@ -94,8 +103,8 @@ class PositivityRCAdapter(private val quotes: List<PositivityData>, private val 
   }
 
   override fun onBindViewHolder(holder: PositivityRCViewHolder, position: Int) {
-
-     holder.bind( quotes.get(position))
+   val documentId = quotes.get(position).id
+     holder.bind( quotes.get(position), myLike[documentId]?:false)
 
   }
 

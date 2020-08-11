@@ -13,24 +13,22 @@ class HomeScreenViewModel : ViewModel() {
   private val TAG = HomeScreenViewModel::class.java.simpleName
   private val _positivities = MutableLiveData<List<PositivityData>>()
   val positivity: LiveData<List<PositivityData>> = _positivities
-  private var homeScreenRepository: HomeScreenRepository
-  var observer : Observer<List<PositivityData>>
+  private var homeScreenRepository: HomeScreenRepository = HomeScreenRepository()
+  private var observer : Observer<List<PositivityData>>
 
+  private val _myLikes = MutableLiveData<Map<String,Boolean>>()
+  val myLike : LiveData<Map<String,Boolean>> = _myLikes
   init {
-    Log.i(TAG,"init 1 ${positivity.value}")
-    homeScreenRepository = HomeScreenRepository()
-     observer = Observer<List<PositivityData>> {
+
+    observer  = Observer<List<PositivityData>> {
       _positivities.value = it
     }
-
-    if(positivity.value != null){
-      _positivities.value = positivity.value
-      Log.i(TAG,"init 2 ${_positivities.value}")
-    }else {
-      Log.i(TAG,"init 3 ${_positivities.value}")
-      homeScreenRepository.quotations.observeForever(observer)
-      homeScreenRepository.loadPositivity()
-    }
+   var likeObserver = Observer<Map<String,Boolean>>{
+     _myLikes.value = it
+   }
+    homeScreenRepository.myLikes?.observeForever(likeObserver)
+    homeScreenRepository.quotations.observeForever(observer)
+    homeScreenRepository.loadPositivity()
   }
 
   fun updateLike(documentId:String){
