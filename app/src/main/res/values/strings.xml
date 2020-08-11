@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">Postivity</string>
+  <string name="app_name">Zero State</string>
   <!-- TODO: Remove or change this placeholder text -->
   <string name="hello_blank_fragment">Hello blank fragment</string>
   <string name="positivity_fragment">Positivity</string>
@@ -7,4 +7,5 @@
   <string name="demo_quote">What hurts you today makes you stronger tomorrow</string>
   <string name="like1">You &amp; </string>
   <string name="like2"> Others</string>
+  <string name="issue_bitmap">Issue with bitmap</string>
 </resources>

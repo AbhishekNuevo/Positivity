@@ -5,21 +5,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.abhishekjoshi158.postivity.MainActivity
 import com.abhishekjoshi158.postivity.R
 import com.abhishekjoshi158.postivity.datamodels.PositivityData
 import com.abhishekjoshi158.postivity.repository.GlideApp
+import com.abhishekjoshi158.postivity.utilities.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
-import com.abhishekjoshi158.postivity.utilities.LIKE
-import com.abhishekjoshi158.postivity.utilities.SAVE
-import com.abhishekjoshi158.postivity.utilities.SHARE
 
 class PositivityRCViewHolder(v: View,private val context : Context, private val userClicks: (String, String) -> Unit) : RecyclerView.ViewHolder(v), View.OnClickListener  {
   private var positivityImage: ImageView
@@ -28,6 +24,7 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
   private val ll_like : LinearLayout
   private val ll_save : LinearLayout
   private val ll_share : LinearLayout
+  private val rl_image_container : RelativeLayout
   private val tv_like_no: TextView
   private val im_heart : ImageView
   private var likes = 0
@@ -40,6 +37,7 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
     ll_like = v.findViewById(R.id.ll_like)
     ll_save = v.findViewById(R.id.ll_save)
     ll_share = v.findViewById(R.id.ll_share)
+    rl_image_container = v.findViewById(R.id.rl_image_container)
     im_heart = v.findViewById(R.id.im_heart)
     ll_like.setOnClickListener(this)
     ll_save.setOnClickListener(this)
@@ -80,7 +78,11 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
           userClicks(SAVE,documentId)
         }
        R.id.ll_share -> {
-         userClicks(SHARE,documentId)
+        val bitmap =  getBitmapOFView(rl_image_container)
+         if(bitmap!=null)
+         getURI(context,bitmap) else
+         Toast.makeText(context,R.string.issue_bitmap, Toast.LENGTH_SHORT).show()
+
        }
 
       }

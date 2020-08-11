@@ -70,24 +70,6 @@ class PositivityFragment : Fragment() {
         viewModel?.updateLike(documentId)
       }
       SHARE -> {
-      Toast.makeText(requireContext(),"Share ",Toast.LENGTH_SHORT).show()
-        var islandRef = storageReference.child("english/1.png")
-
-        val ONE_MEGABYTE: Long = 1024 * 1024
-        islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {bytes ->
-          val mBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-          val contentUri = getURI(requireContext(),mBitmap)
-          if (contentUri != null ) {
-            val shareIntent = Intent()
-            shareIntent.action = Intent.ACTION_SEND
-            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) // temp permission for receiving app to read this file
-            shareIntent.setDataAndType(contentUri,requireActivity().getContentResolver().getType(contentUri))
-            shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri)
-            startActivity(Intent.createChooser(shareIntent, "Choose an app"))
-          }
-        }.addOnFailureListener {
-          // Handle any errors
-        }
 
       }
       SAVE -> {

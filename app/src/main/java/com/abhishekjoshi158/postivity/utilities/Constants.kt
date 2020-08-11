@@ -1,13 +1,16 @@
 package com.abhishekjoshi158.postivity.utilities
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.net.Uri
+import android.view.View
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.FileProvider
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.net.URI
 
 
 const val LIKE = "likes"
@@ -17,8 +20,11 @@ const val FIRESTORE_DB_QUOTES = "quotations"
 const val FIRESTORE_DB_LIKES = "user_likes"
 
 
-  fun getURI(context: Context,bitmap: Bitmap):Uri?{
+  fun getURI(context: Context?,bitmap: Bitmap){
     var contentUri : Uri? = null
+     if(context == null){
+       return
+     }
     try {
       val cachePath = File(context.cacheDir, "images")
       cachePath.mkdirs() // don't forget to make the directory
@@ -34,6 +40,24 @@ const val FIRESTORE_DB_LIKES = "user_likes"
     } catch (e: IOException) {
       e.printStackTrace()
     }
-    return contentUri
+    if (contentUri != null ) {
+      val shareIntent = Intent()
+      shareIntent.action = Intent.ACTION_SEND
+      shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) // temp permission for receiving app to read this file
+      shareIntent.setDataAndType(contentUri,context.getContentResolver().getType(contentUri))
+      shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri)
+      context.startActivity(Intent.createChooser(shareIntent, "Choose an app"))
+    }
+
   }
+
+fun getBitmapOFView(view: View): Bitmap? {
+  val bitmap = Bitmap.createBitmap(
+    view.getWidth(),
+    view.getHeight(), Bitmap.Config.ARGB_8888
+  )
+  val canvas = Canvas(bitmap)
+  view.draw(canvas)
+  return bitmap
+}
 
