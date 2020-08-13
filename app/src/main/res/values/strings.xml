@@ -14,6 +14,10 @@
    <string name="basic_dialog">Alert</string>
   <string name="yes">Yes</string>
   <string name="no">No</string>
+  <string name="ok">OK</string>
   <string name="cancel">Cancel</string>
   <string name="msg_remove_item">Are you sure want to remove from favourite? </string>
+  <string name="storage_permission">Please,allow us to store the image in phone gallery. </string>
+  <string name="storage_permission_title">Permission Required </string>
+  <string name="image_saved_msg">Image saved in your phone gallery -  </string>
 </resources>

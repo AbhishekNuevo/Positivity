@@ -221,6 +221,9 @@ class HomeScreenRepository {
     _favourite.value = myFavouriteList
   }
 
+   fun downloadInGallery(documentId: String){
+
+   }
 //   fun removeFavouriteItem(documentId : String){
 //     db.collection(FIRESTORE_DB_FAVOURITE).document(MainActivity.DEVICE_ID)
 //       .update(hashMapOf<String, Any>(

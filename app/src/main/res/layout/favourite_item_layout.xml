@@ -123,6 +123,7 @@
             android:text="@string/remove"/>
         </LinearLayout>
       </LinearLayout>
+
     </RelativeLayout>
   </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

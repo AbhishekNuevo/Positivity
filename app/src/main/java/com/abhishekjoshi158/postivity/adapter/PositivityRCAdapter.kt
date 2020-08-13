@@ -30,6 +30,7 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
   private val tv_like_no: TextView
   private val im_heart : ImageView
   private val im_save : ImageView
+  private val cb_like_icon : CheckBox
   private var likes = 0
   private var documentId = ""
   private var favourite = false
@@ -44,6 +45,7 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
     rl_image_container = v.findViewById(R.id.rl_image_container)
     im_heart = v.findViewById(R.id.im_heart)
     im_save = v.findViewById(R.id.im_save)
+    cb_like_icon = v.findViewById(R.id.cb_like_icon)
     ll_like.setOnClickListener(this)
     ll_save.setOnClickListener(this)
     ll_share.setOnClickListener(this)
@@ -69,6 +71,7 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
       tv_like_no.text = likes.toString()
       im_heart.setImageResource(R.drawable.ic_baseline_favorite_border_24)
     }
+    favourite = quote.favourite
      Log.d(TAG,"favourite ${quote.favourite}")
     if(quote.favourite){
       im_save.setImageResource(R.drawable.ic_baseline_library_add_check_24)

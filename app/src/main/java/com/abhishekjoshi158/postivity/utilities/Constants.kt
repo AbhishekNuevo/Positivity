@@ -5,20 +5,28 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.net.Uri
+import android.os.Environment
+import android.os.SystemClock
+import android.provider.MediaStore
 import android.view.View
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.FileProvider
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.io.OutputStream
+import java.util.*
 
 
 const val LIKE = "likes"
 const val SHARE = "share"
 const val FAVOURITE = "favourite"
+const val DOWNLOAD = "download"
+const val REMOVE = "remove"
 const val FIRESTORE_DB_QUOTES = "quotations"
 const val FIRESTORE_DB_LIKES = "user_likes"
 const val FIRESTORE_DB_FAVOURITE = "user_favourite"
+const val STORAGE_REQUEST_CODE = 1001
 
   fun getURI(context: Context?,bitmap: Bitmap){
     var contentUri : Uri? = null
@@ -59,5 +67,20 @@ fun getBitmapOFView(view: View): Bitmap? {
   val canvas = Canvas(bitmap)
   view.draw(canvas)
   return bitmap
+}
+
+ fun saveImageToExternalStorage(bitmap:Bitmap,context: Context?):Uri{
+
+
+  val name = "Image_${System.currentTimeMillis()}.jpg"
+    val savedImageURL = MediaStore.Images.Media.insertImage(
+      context?.contentResolver,
+      bitmap,
+      name,
+      "image from Zero State"
+    )
+
+  // Return the saved image path to uri
+  return Uri.parse(savedImageURL)
 }
 

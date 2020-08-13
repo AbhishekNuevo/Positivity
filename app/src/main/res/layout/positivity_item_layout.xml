@@ -121,6 +121,16 @@
             android:text="Share"/>
         </LinearLayout>
       </LinearLayout>
+      <CheckBox
+        android:id="@+id/cb_like_icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:button="@null"
+        android:checked="false"
+        android:background="@drawable/like_icon"
+        android:visibility="gone"
+        android:stateListAnimator="@animator/scale"
+        android:layout_centerInParent="true"/>
     </RelativeLayout>
   </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
