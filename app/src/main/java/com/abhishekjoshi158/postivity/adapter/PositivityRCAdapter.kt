@@ -1,6 +1,7 @@
 package com.abhishekjoshi158.postivity.adapter
 
 import android.content.Context
+import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 
 class PositivityRCViewHolder(v: View,private val context : Context, private val userClicks: (String, String) -> Unit) : RecyclerView.ViewHolder(v), View.OnClickListener  {
+  private val TAG = PositivityRCViewHolder::class.java.simpleName
   private var positivityImage: ImageView
   private var positivityText: TextView
   private val storageReference : StorageReference
@@ -27,8 +29,10 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
   private val rl_image_container : RelativeLayout
   private val tv_like_no: TextView
   private val im_heart : ImageView
+  private val im_save : ImageView
   private var likes = 0
   private var documentId = ""
+  private var favourite = false
   init {
     storageReference = Firebase.storage.reference
     positivityImage = v.findViewById(R.id.iv_positivity)
@@ -39,6 +43,7 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
     ll_share = v.findViewById(R.id.ll_share)
     rl_image_container = v.findViewById(R.id.rl_image_container)
     im_heart = v.findViewById(R.id.im_heart)
+    im_save = v.findViewById(R.id.im_save)
     ll_like.setOnClickListener(this)
     ll_save.setOnClickListener(this)
     ll_share.setOnClickListener(this)
@@ -47,7 +52,7 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
     val height = (4 * MainActivity.SCREEN_WIDTH) / 4
     positivityImage.layoutParams.height = height
     positivityImage.requestLayout()
-//    Log.i(PositivityRCViewHolder::class.java.simpleName,"width ${MainActivity.SCREEN_WIDTH} and height $height")
+
   }
 
   fun bind(quote: PositivityData,liked:Boolean) {
@@ -64,6 +69,13 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
       tv_like_no.text = likes.toString()
       im_heart.setImageResource(R.drawable.ic_baseline_favorite_border_24)
     }
+     Log.d(TAG,"favourite ${quote.favourite}")
+    if(quote.favourite){
+      im_save.setImageResource(R.drawable.ic_baseline_library_add_check_24)
+
+    }else{
+      im_save.setImageResource(R.drawable.ic_baseline_library_add_24)
+    }
 
 
   }
@@ -75,7 +87,11 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
            userClicks(LIKE,documentId)
          }
         R.id.ll_save -> {
-          userClicks(SAVE,documentId)
+          if(favourite){
+            Toast.makeText(context,"Remove from favourite tab",Toast.LENGTH_LONG).show()
+          }else {
+            userClicks(FAVOURITE, documentId)
+          }
         }
        R.id.ll_share -> {
         val bitmap =  getBitmapOFView(rl_image_container)

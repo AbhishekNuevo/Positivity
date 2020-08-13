@@ -15,10 +15,10 @@ import java.io.IOException
 
 const val LIKE = "likes"
 const val SHARE = "share"
-const val SAVE = "save"
+const val FAVOURITE = "favourite"
 const val FIRESTORE_DB_QUOTES = "quotations"
 const val FIRESTORE_DB_LIKES = "user_likes"
-
+const val FIRESTORE_DB_FAVOURITE = "user_favourite"
 
   fun getURI(context: Context?,bitmap: Bitmap){
     var contentUri : Uri? = null

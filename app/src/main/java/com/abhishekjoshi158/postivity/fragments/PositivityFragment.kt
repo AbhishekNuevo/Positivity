@@ -16,10 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abhishekjoshi158.postivity.R
 import com.abhishekjoshi158.postivity.adapter.PositivityRCAdapter
 import com.abhishekjoshi158.postivity.datamodels.PositivityData
-import com.abhishekjoshi158.postivity.utilities.LIKE
-import com.abhishekjoshi158.postivity.utilities.SAVE
-import com.abhishekjoshi158.postivity.utilities.SHARE
-import com.abhishekjoshi158.postivity.utilities.getURI
+import com.abhishekjoshi158.postivity.utilities.*
 import com.abhishekjoshi158.postivity.viewmodels.HomeScreenViewModel
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
@@ -72,8 +69,9 @@ class PositivityFragment : Fragment() {
       SHARE -> {
 
       }
-      SAVE -> {
-
+      FAVOURITE -> {
+         viewModel?.updateFavourite(documentId)
+        Toast.makeText(requireContext(),"Added to favourite",Toast.LENGTH_SHORT).show()
       }
     }
   }

@@ -24,35 +24,35 @@
 
 
 
-    <RelativeLayout
-      android:id="@+id/rl_image_container"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content">
-      <ImageView
-        android:id="@+id/iv_positivity"
-        android:layout_width="400dp"
-        android:layout_height="500dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/a1" />
+      <RelativeLayout
+        android:id="@+id/rl_image_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+          android:id="@+id/iv_positivity"
+          android:layout_width="400dp"
+          android:layout_height="500dp"
+          android:layout_alignParentTop="true"
+          android:layout_centerHorizontal="true"
+          android:scaleType="centerCrop"
+          app:srcCompat="@drawable/a1" />
 
 
-      <TextView
-        android:id="@+id/tv_positivity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingLeft="10sp"
-        android:paddingRight="10sp"
-        android:paddingBottom="10sp"
-        android:typeface="normal"
-        android:layout_alignBottom="@+id/iv_positivity"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        tools:text="@string/demo_quote" />
-    </RelativeLayout>
+        <TextView
+          android:id="@+id/tv_positivity"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:paddingLeft="10sp"
+          android:paddingRight="10sp"
+          android:paddingBottom="10sp"
+          android:typeface="normal"
+          android:layout_alignBottom="@+id/iv_positivity"
+          android:textAppearance="@style/TextAppearance.AppCompat.Large"
+          android:textColor="@color/white"
+          android:textSize="25sp"
+          tools:text="@string/demo_quote" />
+      </RelativeLayout>
       <LinearLayout
         android:id="@+id/ll_buttons"
         android:layout_width="match_parent"
@@ -63,7 +63,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
-          android:id="@+id/ll_like"
+          android:id="@+id/ll_download"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:layout_weight="1"
@@ -71,16 +71,16 @@
           android:background="?android:attr/selectableItemBackground"
           android:orientation="vertical">
           <ImageView
-            android:id="@+id/im_heart"
+            android:id="@+id/im_download"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_baseline_favorite_border_24"/>
+            android:src="@drawable/ic_baseline_save_alt_24"/>
           <TextView
             android:id="@+id/tv_like_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:text="you &amp; 730 others"/>
+            android:text="@string/download"/>
         </LinearLayout>
         <LinearLayout
           android:id="@+id/ll_save"
@@ -94,15 +94,17 @@
             android:id="@+id/im_save"
             android:layout_width="33dp"
             android:layout_height="33dp"
+            android:visibility="gone"
             android:src="@drawable/ic_baseline_library_add_24"/>
           <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
+            android:visibility="gone"
             android:text="add"/>
         </LinearLayout>
         <LinearLayout
-          android:id="@+id/ll_share"
+          android:id="@+id/ll_delete"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:layout_weight="1"
@@ -110,15 +112,15 @@
           android:background="?android:attr/selectableItemBackground"
           android:orientation="vertical">
           <ImageView
-            android:id="@+id/im_share"
+            android:id="@+id/im_delete"
             android:layout_width="33dp"
             android:layout_height="33dp"
-            android:src="@drawable/ic_baseline_share_24"/>
+            android:src="@drawable/ic_baseline_delete_24"/>
           <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:text="Share"/>
+            android:text="@string/remove"/>
         </LinearLayout>
       </LinearLayout>
     </RelativeLayout>

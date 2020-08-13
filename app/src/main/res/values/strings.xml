@@ -8,4 +8,12 @@
   <string name="like1">You &amp; </string>
   <string name="like2"> Others</string>
   <string name="issue_bitmap">Issue with bitmap</string>
+  <string name="no_favourite">No favourite item added</string>
+  <string name="download">Download</string>
+  <string name="remove">Remove</string>
+   <string name="basic_dialog">Alert</string>
+  <string name="yes">Yes</string>
+  <string name="no">No</string>
+  <string name="cancel">Cancel</string>
+  <string name="msg_remove_item">Are you sure want to remove from favourite? </string>
 </resources>
