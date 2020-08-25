@@ -4,4 +4,11 @@
     <color name="colorPrimaryDark">#0EC99E</color>
     <color name="colorAccent">#03DAC5</color>
    <color name="white">#fff</color>
+   <color name="heart">#FB3958</color>
+   <color name="gray">#888787</color>
+   <color name="red_orange">#FF681F</color>
+   <color name="sizzling_red">#FF3855</color>
+   <color name="hot_magenta">#FF00CC</color>
+   <color name="tranparent_color">#00F6F5F6</color>
+
 </resources>

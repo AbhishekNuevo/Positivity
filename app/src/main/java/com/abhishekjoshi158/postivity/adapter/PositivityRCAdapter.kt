@@ -1,22 +1,27 @@
 package com.abhishekjoshi158.postivity.adapter
 
 import android.content.Context
+import android.os.Handler
 import android.util.Log
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
 import com.abhishekjoshi158.postivity.MainActivity
 import com.abhishekjoshi158.postivity.R
 import com.abhishekjoshi158.postivity.datamodels.PositivityData
 import com.abhishekjoshi158.postivity.repository.GlideApp
-import com.abhishekjoshi158.postivity.utilities.*
+import com.abhishekjoshi158.postivity.utilities.FAVOURITE
+import com.abhishekjoshi158.postivity.utilities.LIKE
+import com.abhishekjoshi158.postivity.utilities.getBitmapOFView
+import com.abhishekjoshi158.postivity.utilities.getURI
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
+import com.like.LikeButton
+import com.like.OnLikeListener
+
 
 class PositivityRCViewHolder(v: View,private val context : Context, private val userClicks: (String, String) -> Unit) : RecyclerView.ViewHolder(v), View.OnClickListener  {
   private val TAG = PositivityRCViewHolder::class.java.simpleName
@@ -30,10 +35,13 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
   private val tv_like_no: TextView
   private val im_heart : ImageView
   private val im_save : ImageView
-  private val cb_like_icon : CheckBox
+  private val star_button : LikeButton
+  private val big_star_button : LikeButton
   private var likes = 0
+  private var likeButtonStatus = false
   private var documentId = ""
   private var favourite = false
+  var doubleClick: Boolean? = false
   init {
     storageReference = Firebase.storage.reference
     positivityImage = v.findViewById(R.id.iv_positivity)
@@ -45,15 +53,33 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
     rl_image_container = v.findViewById(R.id.rl_image_container)
     im_heart = v.findViewById(R.id.im_heart)
     im_save = v.findViewById(R.id.im_save)
-    cb_like_icon = v.findViewById(R.id.cb_like_icon)
-    ll_like.setOnClickListener(this)
+    star_button = v.findViewById(R.id.star_button)
+    big_star_button = v.findViewById(R.id.big_star_button)
+
+     ll_like.setOnClickListener(this)
     ll_save.setOnClickListener(this)
     ll_share.setOnClickListener(this)
+    positivityImage.setOnClickListener(this)
 
     positivityImage.layoutParams.width = MainActivity.SCREEN_WIDTH
     val height = (4 * MainActivity.SCREEN_WIDTH) / 4
     positivityImage.layoutParams.height = height
     positivityImage.requestLayout()
+
+   star_button.setOnLikeListener(object : OnLikeListener {
+     override fun liked(likeButton: LikeButton) {
+       userClicks(LIKE,documentId)
+      // Toast.makeText(context,"liked ${star_button.isLiked}",Toast.LENGTH_SHORT).show()
+     }
+     override fun unLiked(likeButton: LikeButton) {
+       if(!doubleClick!!) {
+         userClicks(LIKE, documentId)
+       }else {
+         star_button.isLiked = true
+       }
+
+     }
+   })
 
   }
 
@@ -63,14 +89,19 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
     GlideApp.with(context).load(storageReference.child(path)).into(positivityImage)
     likes = quote.total_likes
     documentId = quote.id
+    likeButtonStatus = liked
     if(liked && likes > 0){
       val likeText = "You & " + --likes + " Others"
       tv_like_no.text = likeText
-      im_heart.setImageResource(R.drawable.ic_baseline_favorite_24)
+      star_button.isLiked = true
+
+
     }else{
       tv_like_no.text = likes.toString()
-      im_heart.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+      star_button.isLiked = false
+
     }
+
     favourite = quote.favourite
      Log.d(TAG,"favourite ${quote.favourite}")
     if(quote.favourite){
@@ -87,7 +118,7 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
     if (v != null) {
       when(v.id){
          R.id.ll_like -> {
-           userClicks(LIKE,documentId)
+           star_button.performClick()
          }
         R.id.ll_save -> {
           if(favourite){
@@ -103,6 +134,18 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
          Toast.makeText(context,R.string.issue_bitmap, Toast.LENGTH_SHORT).show()
 
        }
+        R.id.iv_positivity -> {
+          if (doubleClick!!) {
+            //Code here when they double click
+            big_star_button.visibility = View.VISIBLE
+            star_button.performClick()
+            big_star_button.performClick()
+
+            Handler().postDelayed({ big_star_button.visibility = View.GONE;big_star_button.isLiked = false }, 1000)
+          }
+          doubleClick = true
+          Handler().postDelayed({ doubleClick = false }, 500)
+        }
 
       }
     }
