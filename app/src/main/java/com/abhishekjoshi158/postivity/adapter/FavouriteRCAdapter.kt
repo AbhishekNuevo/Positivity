@@ -1,6 +1,7 @@
 package com.abhishekjoshi158.postivity.adapter
 
 import android.content.Context
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.abhishekjoshi158.postivity.R
 import com.abhishekjoshi158.postivity.datamodels.FavouriteData
 import com.abhishekjoshi158.postivity.interfaces.FavouriteInterface
 import com.abhishekjoshi158.postivity.repository.GlideApp
+import com.abhishekjoshi158.postivity.utilities.wordsToColor
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
@@ -49,7 +51,7 @@ class FavouriteRCAdapterViewHolder(
   }
 
   fun bind(item: FavouriteData) {
-    positivityText.text = item.positivity_text
+    positivityText.text =  Html.fromHtml( wordsToColor(item.positivity_text))
     val path = "english/${item.image_url}.png"
     GlideApp.with(context).load(storageReference.child(path)).into(positivityImage)
     documentId = item.documentId

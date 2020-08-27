@@ -2,6 +2,7 @@ package com.abhishekjoshi158.postivity.adapter
 
 import android.content.Context
 import android.os.Handler
+import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +13,7 @@ import com.abhishekjoshi158.postivity.MainActivity
 import com.abhishekjoshi158.postivity.R
 import com.abhishekjoshi158.postivity.datamodels.PositivityData
 import com.abhishekjoshi158.postivity.repository.GlideApp
-import com.abhishekjoshi158.postivity.utilities.FAVOURITE
-import com.abhishekjoshi158.postivity.utilities.LIKE
-import com.abhishekjoshi158.postivity.utilities.getBitmapOFView
-import com.abhishekjoshi158.postivity.utilities.getURI
+import com.abhishekjoshi158.postivity.utilities.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
@@ -84,7 +82,8 @@ class PositivityRCViewHolder(v: View,private val context : Context, private val 
   }
 
   fun bind(quote: PositivityData,liked:Boolean) {
-    positivityText.text = quote.positivity_text
+    positivityText.text = Html.fromHtml( wordsToColor(quote.positivity_text))
+
     val path = "english/${quote.image_url}.png"
     GlideApp.with(context).load(storageReference.child(path)).into(positivityImage)
     likes = quote.total_likes

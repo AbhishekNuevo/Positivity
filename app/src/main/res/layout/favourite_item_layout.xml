@@ -51,6 +51,7 @@
           android:textAppearance="@style/TextAppearance.AppCompat.Large"
           android:textColor="@color/white"
           android:textSize="25sp"
+            android:textStyle="bold"
           tools:text="@string/demo_quote" />
       </RelativeLayout>
       <LinearLayout

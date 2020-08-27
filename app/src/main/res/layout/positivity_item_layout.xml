@@ -50,6 +50,7 @@
         android:layout_alignBottom="@+id/iv_positivity"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/white"
+          android:textStyle="bold"
         android:textSize="25sp"
         tools:text="@string/demo_quote" />
     </RelativeLayout>
