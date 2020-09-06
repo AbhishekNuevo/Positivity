@@ -36,6 +36,7 @@ class FavouriteRCAdapterViewHolder(
   private var documentId : String = ""
   init {
     storageReference = Firebase.storage.reference
+    itemView
     positivityImage = v.findViewById(R.id.iv_positivity)
     positivityText = v.findViewById(R.id.tv_positivity)
     ll_download = v.findViewById(R.id.ll_download)

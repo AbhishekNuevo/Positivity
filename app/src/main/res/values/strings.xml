@@ -1,23 +1,25 @@
 <resources>
-  <string name="app_name">Zero State</string>
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="hello_blank_fragment">Hello blank fragment</string>
-  <string name="positivity_fragment">Positivity</string>
-  <string name="favourite_fragment">Favourite</string>
-  <string name="demo_quote">What hurts you today makes you stronger tomorrow</string>
-  <string name="like1">You &amp; </string>
-  <string name="like2"> Others</string>
-  <string name="issue_bitmap">Issue with bitmap</string>
-  <string name="no_favourite">No favourite item added</string>
-  <string name="download">Download</string>
-  <string name="remove">Remove</string>
-   <string name="basic_dialog">Alert</string>
-  <string name="yes">Yes</string>
-  <string name="no">No</string>
-  <string name="ok">OK</string>
-  <string name="cancel">Cancel</string>
-  <string name="msg_remove_item">Are you sure want to remove from favourite? </string>
-  <string name="storage_permission">Please,allow us to store the image in phone gallery. </string>
-  <string name="storage_permission_title">Permission Required </string>
-  <string name="image_saved_msg">Image saved in your phone gallery -  </string>
+    <string name="app_name">Zero State</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="positivity_fragment">Positivity</string>
+    <string name="favourite_fragment">Favourite</string>
+    <string name="demo_quote">What hurts you today makes you stronger tomorrow</string>
+    <string name="like1">You &amp; </string>
+    <string name="like2"> Others</string>
+    <string name="issue_bitmap">Issue with bitmap</string>
+    <string name="no_favourite">No favourite item added</string>
+    <string name="download">Download</string>
+    <string name="remove">Remove</string>
+    <string name="basic_dialog">Alert</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="msg_remove_item">Are you sure want to remove from favourite? </string>
+    <string name="storage_permission">Please,allow us to store the image in phone gallery. </string>
+    <string name="storage_permission_title">Permission Required </string>
+    <string name="image_saved_msg">Image saved in your phone gallery -  </string>
+    <string name="openDrawer">Open </string>
+    <string name="closeDrawer">Close </string>
 </resources>
